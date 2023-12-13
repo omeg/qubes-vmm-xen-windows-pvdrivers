@@ -45,7 +45,7 @@
 #define PAGE_SIZE 4096
 #endif
 
-static void _Log(XENCONTROL_LOG_LEVEL logLevel, PCHAR function, struct libxenvchan *ctrl, PWCHAR format, ...)
+static void _Log(XENCONTROL_LOG_LEVEL logLevel, LPCSTR function, struct libxenvchan *ctrl, PWCHAR format, ...)
 {
     va_list args;
 

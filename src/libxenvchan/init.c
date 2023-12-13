@@ -67,7 +67,7 @@
 
 #define snprintf _snprintf
 
-static void _Log(XENCONTROL_LOG_LEVEL logLevel, PCHAR function, struct libxenvchan *ctrl, PWCHAR format, ...)
+static void _Log(XENCONTROL_LOG_LEVEL logLevel, LPCSTR function, struct libxenvchan *ctrl, PWCHAR format, ...)
 {
     va_list args;
 
@@ -314,7 +314,7 @@ static int init_evt_srv(struct libxenvchan *ctrl, USHORT domain)
         goto fail;
     }
 
-    status = XcEvtchnBindUnbound(ctrl->xc, domain, ctrl->event, FALSE, &ctrl->event_port);
+    status = XcEvtchnOpenUnbound(ctrl->xc, domain, ctrl->event, FALSE, &ctrl->event_port);
     if (status != ERROR_SUCCESS)
     {
         Log(XLL_ERROR, "failed to bind event channel for domain %u: 0x%x", domain, status);
