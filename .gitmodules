@@ -1,18 +1,15 @@
 [submodule "xennet"]
 	path = xennet
-	url = git://xenbits.xen.org/pvdrivers/win/xennet.git
+	url = https://xenbits.xen.org/git-http/pvdrivers/win/xennet.git
 [submodule "xenvbd"]
 	path = xenvbd
-	url = git://xenbits.xen.org/pvdrivers/win/xenvbd.git
+	url = https://xenbits.xen.org/git-http/pvdrivers/win/xenvbd.git
 [submodule "xenvif"]
 	path = xenvif
-	url = git://xenbits.xen.org/pvdrivers/win/xenvif.git
+	url = https://xenbits.xen.org/git-http/pvdrivers/win/xenvif.git
 [submodule "xenbus"]
 	path = xenbus
-	url = git://github.com/omeg/xenbus.git
-	branch = omeg/win10-qubes-fix
+	url = https://xenbits.xen.org/git-http/pvdrivers/win/xenbus.git
 [submodule "xeniface"]
 	path = xeniface
-	url = git://github.com/omeg/xeniface.git
-	branch = omeg/win10
-
+	url = https://github.com/omeg/xeniface.git
