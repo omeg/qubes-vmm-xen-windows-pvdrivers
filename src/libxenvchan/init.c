@@ -409,7 +409,9 @@ static int min_order(int size)
     return rv;
 }
 
-struct libxenvchan *libxenvchan_server_init(XENCONTROL_LOGGER *logger, int domain, const char *xs_path, size_t left_min, size_t right_min)
+struct libxenvchan *libxenvchan_server_init(XENCONTROL_LOGGER *logger, int domain, const char *xs_path,
+                                            size_t left_min, size_t right_min,
+                                            XENCONTROL_LOG_LEVEL log_level)
 {
     struct libxenvchan *ctrl;
     uint32_t ring_ref;
@@ -464,6 +466,8 @@ struct libxenvchan *libxenvchan_server_init(XENCONTROL_LOGGER *logger, int domai
         goto out;
     }
 
+    XcSetLogLevel(ctrl->xc, log_level);
+
     if (init_evt_srv(ctrl, (USHORT)domain))
         goto out;
 
@@ -515,7 +519,8 @@ fail:
     return -1;
 }
 
-struct libxenvchan *libxenvchan_client_init(XENCONTROL_LOGGER *logger, int domain, const char *xs_path)
+struct libxenvchan *libxenvchan_client_init(XENCONTROL_LOGGER *logger, int domain, const char *xs_path,
+                                            XENCONTROL_LOG_LEVEL log_level)
 {
     struct libxenvchan *ctrl = malloc(sizeof(struct libxenvchan));
     char buf[64], ref[64];
@@ -543,6 +548,8 @@ struct libxenvchan *libxenvchan_client_init(XENCONTROL_LOGGER *logger, int domai
         SetLastError(ERROR_NOT_SUPPORTED);
         goto fail;
     }
+
+    XcSetLogLevel(ctrl->xc, log_level);
 
     // find xenstore entry
     snprintf(buf, sizeof buf, "%s/ring-ref", xs_path);
